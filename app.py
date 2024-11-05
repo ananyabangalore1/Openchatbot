@@ -92,9 +92,6 @@ if prompt:
     Now, answer this question:
     """
 
-    # Combine the few-shot examples with the user input
-    full_prompt = few_shot_prompt + "\n" + prompt
-
     # Store user message in session state
     st.session_state.messages.append({"role": "user", "content": prompt})
 
