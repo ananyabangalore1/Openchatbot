@@ -103,7 +103,7 @@ if prompt:
 
     try:
         # Call the OpenAI API to get a response with few-shot learning prompt
-        response = openai.ChatCompletion.create(
+        response = openai.completions.create(
             model=st.session_state["openai_model"],
             messages=[
                 {"role": "system", "content": few_shot_prompt},  # Few-shot examples
@@ -128,4 +128,3 @@ if prompt:
 if st.sidebar.button("Clear Chat History"):
     st.session_state.chat_history = []
     st.session_state.messages = []
-
