@@ -1,10 +1,6 @@
 import openai
 import streamlit as st
 
-# Set up OpenAI API key
-  # Ensure your secrets.toml has this key
-  
-
 openai.api_key = "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"
 
 # Custom CSS to set colors
@@ -30,9 +26,6 @@ st.markdown(
 st.title("ChatGPT-like Bot")
 
 # Initialize session state variables
-if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -70,28 +63,6 @@ for message in st.session_state.messages:
 prompt = st.text_input("What's up?", placeholder="Type your message here...")
 
 if prompt:
-    # Few-shot examples added before user input
-    few_shot_prompt = """
-    You are a helpful assistant. Answer the following questions based on the examples below:
-
-    Q: What is Ananya's full name?
-    A: Ananya Shashidhara Bangalore
-
-    Q: How many members are in the family?
-    A: Four members
-
-    Q: What's the mother's name?
-    A: LakshmiSuchetha
-
-    Q: What's the father's name?
-    A: Shashi
-
-    Q: Brother's name?
-    A: Samart
-
-    Now, answer this question:
-    """
-
     # Store user message in session state
     st.session_state.messages.append({"role": "user", "content": prompt})
 
@@ -99,14 +70,10 @@ if prompt:
     st.markdown(f"**👤 User:** {prompt}")
 
     try:
-        # Call the OpenAI API to get a response with few-shot learning prompt
+        # Call the OpenAI API to get a response using the new interface
         response = openai.ChatCompletion.create(
-            model=st.session_state["openai_model"],
-            messages=[
-                {"role": "system", "content": few_shot_prompt},  # Few-shot examples
-                {"role": "user", "content": prompt}  # User's question
-            ],
-            max_tokens=150
+            model="gpt-3.5-turbo",
+            messages=st.session_state.messages
         )
 
         # Extract assistant's response
