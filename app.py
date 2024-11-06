@@ -1,6 +1,6 @@
 import openai
 import streamlit as st
-from creds import openai_api_key
+#from creds import openai_api_key
 
 openai.api_key="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"
 
