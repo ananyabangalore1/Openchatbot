@@ -71,7 +71,7 @@ if prompt:
 
     try:
         # Call the OpenAI API to get a response using the new interface
-        response = openai.ChatCompletion.create(
+        response =client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=st.session_state.messages
         )
