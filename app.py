@@ -2,7 +2,7 @@ import openai
 import streamlit as st
 
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Custom CSS to set colors
 st.markdown(
