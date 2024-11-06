@@ -2,7 +2,7 @@ import openai
 import streamlit as st
 
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Custom CSS to set colors
 st.markdown(
@@ -72,7 +72,7 @@ if prompt:
 
     try:
         # Call the OpenAI API to get a response using the new interface
-        response = client.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=st.session_state.messages
         )
