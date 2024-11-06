@@ -1,8 +1,8 @@
 import openai
 import streamlit as st
+from creds import openai_api_key
 
-
-openai.api_key = "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"
+openai.api_key=openai_api_key
 
 # Custom CSS to set colors
 st.markdown(
