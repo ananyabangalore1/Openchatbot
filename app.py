@@ -1,6 +1,7 @@
 import openai
 import streamlit as st
 
+
 openai.api_key = "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"
 
 # Custom CSS to set colors
@@ -71,7 +72,7 @@ if prompt:
 
     try:
         # Call the OpenAI API to get a response using the new interface
-        response =client.chat.completions.create(
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=st.session_state.messages
         )
