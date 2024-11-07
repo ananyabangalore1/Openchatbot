@@ -4,12 +4,12 @@ import streamlit as st
 import docx
 import os
 from dotenv import load_dotenv
+openai.api_key = st.secrets["openai"]["api_key"]
 
-
-load_dotenv('key.env')
+#load_dotenv('key.env')
 
 # Get the API key from the environment variable
-api_key = os.getenv("OPENAI_API_KEY")
+#api_key = os.getenv("OPENAI_API_KEY")
 
 if api_key:
     openai.api_key = api_key
