@@ -1,19 +1,20 @@
 import openai
 import streamlit as st
 #from creds import openai_api_key
-#import docx
+import docx
 import os
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-#load_dotenv('key.env')
+
+load_dotenv('key.env')
 
 # Get the API key from the environment variable
-#api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
 
-#if api_key:
- #   openai.api_key = api_key
-#else:
- #   raise ValueError("API key not found. Please check your key.env file.")
+if api_key:
+    openai.api_key = api_key
+else:
+    raise ValueError("API key not found. Please check your key.env file.")
 
 #def extract_text_from_docx(file):
  #   doc = Document(file)
