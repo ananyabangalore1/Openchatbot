@@ -5,6 +5,7 @@ import docx
 import os
 from dotenv import load_dotenv
 
+openai.api_key="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"
 
 
 load_dotenv('key.env')
