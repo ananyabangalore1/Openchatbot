@@ -92,7 +92,7 @@ for message in st.session_state.messages:
         st.markdown(f"**🤖 Assistant:** {message['content']}")  # Assistant icon
 
 # Text input for user to send messages
-prompt = st.text_input("What's up?", placeholder="Type your message here...")
+prompt = st.text_input("What's up?", placeholder="Type your message here...",key='fixed_input')
 
 if prompt:
     # Combine the few-shot examples with the user's input
