@@ -8,15 +8,15 @@ from dotenv import load_dotenv
 openai.api_key="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"
 
 
-load_dotenv('key.env')
+#load_dotenv('key.env')
 
 # Get the API key from the environment variable
-api_key = os.getenv("OPENAI_API_KEY")
+#api_key = os.getenv("OPENAI_API_KEY")
 
-if api_key:
-    openai.api_key = api_key
-else:
-    raise ValueError("API key not found. Please check your key.env file.")
+#if api_key:
+ #   openai.api_key = api_key
+#else:
+ #   raise ValueError("API key not found. Please check your key.env file.")
 
 #def extract_text_from_docx(file):
  #   doc = Document(file)
