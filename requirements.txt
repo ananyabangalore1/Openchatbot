@@ -1,2 +1,4 @@
 openai==0.28  # Pinning the OpenAI library to version 0.28
 streamlit     # Streamlit version, you can leave it without a version to get the latest
+python-docx
+python-dotenv
