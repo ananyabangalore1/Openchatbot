@@ -1,22 +1,10 @@
 import openai
 import streamlit as st
-#from creds import openai_api_key
 import docx
 import os
-from dotenv import load_dotenv
+
+# Load the API key from Streamlit secrets
 openai.api_key = st.secrets["openai"]["api_key"]
-
-#load_dotenv('key.env')
-
-# Get the API key from the environment variable
-#api_key = os.getenv("OPENAI_API_KEY")
-
-#def extract_text_from_docx(file):
- #   doc = Document(file)
-   # text = []
-    #for para in doc.paragraphs:
-     #   text.append(para.text)
-    #return "\n".join(text)
 
 # Streamlit App UI
 
@@ -71,25 +59,30 @@ with st.sidebar:
 
 # Function to read few-shot examples from a docx file
 def load_few_shot_examples(docx_file_path):
-    # Load the .docx file
-    doc = docx.Document(docx_file_path)
+    try:
+        # Load the .docx file
+        doc = docx.Document(docx_file_path)
+        few_shot_prompt = ""
+
+        # Read paragraphs from the .docx file and append them to the prompt
+        for paragraph in doc.paragraphs:
+            few_shot_prompt += paragraph.text + "\n"
+
+        return few_shot_prompt
+    except Exception as e:
+        st.error(f"Error reading the document: {str(e)}")
+        return ""
+
+# Determine file path for the docx file
+# Streamlit cloud expects the file to be inside the repository
+docx_file_path = "data/few_shot_examples.docx"
+
+# Ensure the file exists before attempting to load
+if os.path.exists(docx_file_path):
+    few_shot_prompt = load_few_shot_examples(docx_file_path)
+else:
+    st.error(f"Error: File '{docx_file_path}' not found.")
     few_shot_prompt = ""
-
-    # Read paragraphs from the .docx file and append them to the prompt
-    for paragraph in doc.paragraphs:
-        few_shot_prompt += paragraph.text + "\n"
-
-    return few_shot_prompt
-
-# Path to the document with few-shot examples
-# Assuming your document is located in a 'data' subfolder within the project directory
-current_directory = os.path.dirname(__file__)  # Path to the script's location
-docx_file_name = "few_shot_examples.docx"
-docx_file_path = "data/few_shot_examples.docx" 
-#docx_file_path = os.path.join(current_directory, "data", docx_file_name)
-
-# Load the few-shot examples from the document
-few_shot_prompt = load_few_shot_examples(docx_file_path)
 
 # Display current chat messages with icons
 for message in st.session_state.messages:
@@ -129,10 +122,9 @@ if prompt:
         st.session_state.messages.append({"role": "assistant", "content": assistant_response})
 
     except Exception as e:
-        st.error(f"An error occurred: {str(e)}")
+        st.error(f"An error occurred while getting a response: {str(e)}")
 
 # Button to clear chat history
 if st.sidebar.button("Clear Chat History"):
     st.session_state.chat_history = []
     st.session_state.messages = []
-
