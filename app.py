@@ -11,10 +11,10 @@ openai.api_key = st.secrets["openai"]["api_key"]
 # Get the API key from the environment variable
 #api_key = os.getenv("OPENAI_API_KEY")
 
-if api_key:
-    openai.api_key = api_key
-else:
-    raise ValueError("API key not found. Please check your key.env file.")
+#if api_key:
+ #   openai.api_key = api_key
+#else:
+ #   raise ValueError("API key not found. Please check your key.env file.")
 
 #def extract_text_from_docx(file):
  #   doc = Document(file)
