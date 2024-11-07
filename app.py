@@ -3,6 +3,7 @@ import streamlit as st
 #from creds import openai_api_key
 import docx
 import os
+from dotenv import load_dotenv
 
 
 
