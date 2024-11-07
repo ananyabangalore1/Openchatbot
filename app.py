@@ -11,10 +11,10 @@ openai.api_key = st.secrets["openai"]["api_key"]
 # Get the API key from the environment variable
 #api_key = os.getenv("OPENAI_API_KEY")
 
-#if api_key:
- #   openai.api_key = api_key
-#else:
- #   raise ValueError("API key not found. Please check your key.env file.")
+if api_key:
+    openai.api_key = api_key
+else:
+    raise ValueError("API key not found. Please check your key.env file.")
 
 #def extract_text_from_docx(file):
  #   doc = Document(file)
@@ -90,7 +90,8 @@ def load_few_shot_examples(docx_file_path):
 # Assuming your document is located in a 'data' subfolder within the project directory
 current_directory = os.path.dirname(__file__)  # Path to the script's location
 docx_file_name = "few_shot_examples.docx"
-docx_file_path = os.path.join(current_directory, "data", docx_file_name)
+docx_file_path = "data/few_shot_examples.docx" 
+#docx_file_path = os.path.join(current_directory, "data", docx_file_name)
 
 # Load the few-shot examples from the document
 few_shot_prompt = load_few_shot_examples(docx_file_path)
